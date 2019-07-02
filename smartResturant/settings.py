@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'smartResturant.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'meat',
-        'USER': 'lak',
-        'PASSWORD': 'password1234',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd8p0jcv6791cai',
+        'USER': 'wvrekcrmpnxdtm',
+        'PASSWORD': '97644f07cc99a1d15d329b32d265051052c87e15e409960946e26b8d56366a2c',
+        'HOST': 'ec2-50-19-221-38.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
