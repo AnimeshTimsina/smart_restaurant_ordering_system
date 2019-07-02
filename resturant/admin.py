@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Table,Type,Food,Customer,Orders
+from .models import Table,Type,Food,Customer,Orders
 
 # Register your models here.
 
