@@ -27,6 +27,7 @@ class Food(models.Model):
 
 class Customer(models.Model):
     mac_id=models.CharField(max_length=50)
+    
 
 class Orders(models.Model):
     customer=models.ForeignKey(Customer,on_delete=models.CASCADE)
