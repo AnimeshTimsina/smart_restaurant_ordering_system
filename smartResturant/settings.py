@@ -66,9 +66,12 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
+           
+            "hosts": ['redis://:password1234@redis-13131.c85.us-east-1-2.ec2.cloud.redislabs.com:13131']
+          
+
+        }
+    }
 }
 
 
@@ -93,26 +96,26 @@ CHANNEL_LAYERS = {
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'restaurantdb',
-#         'USER': 'animesh',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'msrehjtp',
-        'USER': 'msrehjtp',
-        'PASSWORD': '6GhB9g2ATGkXddjlBdXsJvBqnBQqBih8',
-        'HOST': 'raja.db.elephantsql.com',
-        'PORT': '',
+        'NAME': 'restaurantdb',
+        'USER': 'animesh',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'msrehjtp',
+#         'USER': 'msrehjtp',
+#         'PASSWORD': '6GhB9g2ATGkXddjlBdXsJvBqnBQqBih8',
+#         'HOST': 'raja.db.elephantsql.com',
+#         'PORT': '',
+#     }
+# }
 
 
 # Password validation
