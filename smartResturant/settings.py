@@ -96,26 +96,26 @@ CHANNEL_LAYERS = {
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'restaurantdb',
-        'USER': 'animesh',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'msrehjtp',
-#         'USER': 'msrehjtp',
-#         'PASSWORD': '6GhB9g2ATGkXddjlBdXsJvBqnBQqBih8',
-#         'HOST': 'raja.db.elephantsql.com',
-#         'PORT': '',
+#         'NAME': 'restaurantdb',
+#         'USER': 'animesh',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ddvjd104ho47mk',
+        'USER': 'vissqyuygsintw',
+        'PASSWORD': '062d09073288049276de57085ee1c0225cb9469a7e21af8e044fb42ec4f990b3',
+        'HOST': 'ec2-54-235-92-43.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
