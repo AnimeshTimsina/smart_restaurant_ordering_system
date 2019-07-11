@@ -82,16 +82,16 @@ CHANNEL_LAYERS = {
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd8p0jcv6791cai',
-        'USER': 'wvrekcrmpnxdtm',
-        'PASSWORD': '97644f07cc99a1d15d329b32d265051052c87e15e409960946e26b8d56366a2c',
-        'HOST': 'ec2-50-19-221-38.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd8p0jcv6791cai',
+#         'USER': 'wvrekcrmpnxdtm',
+#         'PASSWORD': '97644f07cc99a1d15d329b32d265051052c87e15e409960946e26b8d56366a2c',
+#         'HOST': 'ec2-50-19-221-38.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -103,9 +103,16 @@ DATABASES = {
 #         'PORT': '5432',
 #     }
 # }
-
-
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'msrehjtp',
+        'USER': 'msrehjtp',
+        'PASSWORD': '6GhB9g2ATGkXddjlBdXsJvBqnBQqBih8',
+        'HOST': 'raja.db.elephantsql.com',
+        'PORT': '',
+    }
+}
 
 
 # Password validation
