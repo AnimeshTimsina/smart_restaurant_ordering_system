@@ -1,0 +1,27 @@
+{% load static%}
+<html>
+  <body>
+    <h1>Orders</h1>
+    <textarea id="log" cols="100" rows="20"></textarea><br/>
+  </body>
+
+<script src = "{% static 'js/reconnecting-websocket.js'%}"></script>
+<script>
+var socketVar = new ReconnectingWebSocket('ws://'+window.location.host+'/ws/management/trackOrders/');
+socketVar.onmessage = function(e){
+  var data=JSON.parse(e.data);
+  var table = data['table']
+  var food = data['food']
+  var quantity = data['quantity']
+  var dateOfCreation = data['dateOfCreation']
+  var costList = data['costList']
+  var totalCost = data['totalCost']
+  var arrived = data['arrived']
+  var paid = data['paid']
+  document.querySelector('#log').value+=(" Table : " + table+'\t'+" Food : " + food+'\t'+" Quantity : "+quantity+'\t'+" Total Cost : " + totalCost+'\n')
+};
+socketVar.onclose=function(e){
+  console.error('Socket closed unexpectedly');
+}
+</script>
+</html>

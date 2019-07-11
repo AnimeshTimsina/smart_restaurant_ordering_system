@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'resturant',
     'crispy_forms',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -60,26 +61,49 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'smartResturant.wsgi.application'
 
+ASGI_APPLICATION = 'smartResturant.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8p0jcv6791cai',
+        'USER': 'wvrekcrmpnxdtm',
+        'PASSWORD': '97644f07cc99a1d15d329b32d265051052c87e15e409960946e26b8d56366a2c',
+        'HOST': 'ec2-50-19-221-38.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd8p0jcv6791cai',
-#         'USER': 'wvrekcrmpnxdtm',
-#         'PASSWORD': '97644f07cc99a1d15d329b32d265051052c87e15e409960946e26b8d56366a2c',
-#         'HOST': 'ec2-50-19-221-38.compute-1.amazonaws.com',
+#         'NAME': 'restaurantdb',
+#         'USER': 'animesh',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
 # }
+
 
 
 

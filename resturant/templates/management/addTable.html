@@ -1,0 +1,17 @@
+<html>
+<body>
+<title></title>
+<head></head>
+<div class="container">
+<h1> Add table </h1>
+<form method="POST">
+{% csrf_token %}
+<div class="form-group">
+  {{form.as_p}}
+  </div>
+  <button type="Submit" class="btn btn-primary"> Add </button>
+</form>
+</div>
+</body>
+</html>
+

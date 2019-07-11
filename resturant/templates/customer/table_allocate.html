@@ -1,0 +1,19 @@
+<h1> Choose your table </h1>
+<ul>
+{% for t in table%}
+
+<a href = "{% url 'sessionBegin' t.pk%}">
+<li>
+{% if t.choice_type == '1'%}
+<h1 style="color:red;">{{t}}</h1>
+{% elif t.choice_type == '2'%}
+<h1 style="color:blue;">{{t}}</h1>
+{% else %}
+<h1 style="color:green;">{{t}}</h1>
+{% endif %}
+
+</li>
+</a>
+
+{% endfor %}
+</ul>
