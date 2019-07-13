@@ -1,6 +1,8 @@
 import django_heroku
 import os
 
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,7 +21,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -28,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'resturant',
     'crispy_forms',
-    'channels',
+    'channels'
+    
 ]
 
 MIDDLEWARE = [
@@ -67,11 +70,10 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
            
-            "hosts": ['redis://:password1234@redis-13131.c85.us-east-1-2.ec2.cloud.redislabs.com:13131']
-          
-
-        }
-    }
+            "hosts": ['redis://:password1234@redis-13131.c85.us-east-1-2.ec2.cloud.redislabs.com:13131']     
+        },
+        
+    },
 }
 
 
