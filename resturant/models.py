@@ -6,10 +6,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save,pre_save
 from datetime import datetime,timedelta
 
-
-
-
-
 # Create your models here.
 class Table(models.Model):
     User = models.OneToOneField(User, verbose_name=("linked_user"), on_delete=models.CASCADE)
@@ -30,8 +26,6 @@ def _post_save_receiver(sender,instance,created, **kwargs):
         instance.name = instance.User.username
         instance.save()
     
-
-
 class Category(models.Model):
     category_name = models.CharField(max_length=50)
 
@@ -42,7 +36,7 @@ class Type(models.Model):
     type_name = models.CharField(max_length=50)
 
     def __str__(self):
-        return type_name
+        return self.type_name
 
 class Food(models.Model):
     name = models.CharField(max_length=50)
@@ -51,7 +45,7 @@ class Food(models.Model):
     type = models.ForeignKey(Type,on_delete=models.CASCADE,related_name='foods')
     rating = JSONField(null=True,blank=True)
     orderCount = models.IntegerField(default=0)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=5000)
     imageUrl = models.URLField(null=True,blank=True)
 
 

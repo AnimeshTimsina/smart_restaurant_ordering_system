@@ -15,7 +15,15 @@
 <body>
 {% if table_name.is_authenticated %}
 <p> Welcome {{table_name}} </p>
+{% else %}
+<p> Not authenticated </p>
 {% endif %}
+<h2> Trending </h2>
+<ul>
+{% for trend in trending_foods%}
+<li> {{trend}} </li>
+{% endfor %}
+</ul>
 </body>
 </html>
 

@@ -49,10 +49,12 @@ def newOrderCreated(sender,instance,action,**kwargs):
                 cost = 0
                 count = 0
                 for i in instance.food.all():
+                        i.orderCount = i.orderCount + 1
                         instance.costList.append(i.pricePerQuantity * instance.quantity[count])
                         cost = cost + (i.pricePerQuantity * instance.quantity[count])
                         count = count + 1
                 instance.totalCost = cost
+
                 instance.save()
                 broadcast_to_socket(instance)
  

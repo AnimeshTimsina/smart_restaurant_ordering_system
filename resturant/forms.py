@@ -12,7 +12,7 @@ class addTableForm(ModelForm):
         user = User.objects.create_user(obj.name,None,'password1234')
         user.save()
         obj.User = user
-        obj.choice_type = '3'
+        obj.table_status = '3'
         if commit:
             obj.save()
         return obj

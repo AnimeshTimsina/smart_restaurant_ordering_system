@@ -3,7 +3,9 @@ from . import views_customer as views
 
 urlpatterns = [
     path('table_allocate/',views.table_allocate,name='table_allocate'),
-    path('session/<int:table_id>',views.sessionBegin,name='sessionBegin'),
+    path('<str:table_name>/session',views.sessionBegin,name='sessionBegin'),
+    path('test/',views.test_view,name='test_view'),
+    
 
 
 ]
