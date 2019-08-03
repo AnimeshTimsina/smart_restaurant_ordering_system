@@ -1,4 +1,3 @@
-import django_heroku
 import os
 
 
@@ -21,7 +20,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [  
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,7 +30,7 @@ INSTALLED_APPS = [
     'resturant',
     'crispy_forms',
     'channels'
-    
+
 ]
 
 MIDDLEWARE = [
@@ -65,16 +64,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'smartResturant.wsgi.application'
 
 ASGI_APPLICATION = 'smartResturant.routing.application'
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#
+#             "hosts": ['redis://:password1234@redis-13131.c85.us-east-1-2.ec2.cloud.redislabs.com:13131']
+#         },
+#
+#     },
+# }
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-           
-            "hosts": ['redis://:password1234@redis-13131.c85.us-east-1-2.ec2.cloud.redislabs.com:13131']     
+            "hosts": [('127.0.0.1', 6379)],
         },
-        
     },
 }
+
+
+
 
 
 
@@ -98,26 +109,26 @@ CHANNEL_LAYERS = {
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'restaurantdb',
-#         'USER': 'animesh',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ddvjd104ho47mk',
-        'USER': 'vissqyuygsintw',
-        'PASSWORD': '062d09073288049276de57085ee1c0225cb9469a7e21af8e044fb42ec4f990b3',
-        'HOST': 'ec2-54-235-92-43.compute-1.amazonaws.com',
+        'NAME': 'minorprojectdb',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ddvjd104ho47mk',
+#         'USER': 'vissqyuygsintw',
+#         'PASSWORD': '062d09073288049276de57085ee1c0225cb9469a7e21af8e044fb42ec4f990b3',
+#         'HOST': 'ec2-54-235-92-43.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -163,5 +174,3 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'index/'
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())

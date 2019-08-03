@@ -1,8 +1,10 @@
+import uuid
 from django.db import models
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save,pre_save
+from datetime import datetime,timedelta
 
 
 
@@ -17,7 +19,7 @@ class Table(models.Model):
         ('3', 'free'),
     )
     name = models.CharField(max_length=50, blank = True, null = True)
-    choice_type = models.CharField(max_length=1, choices=type_choices)
+    table_status = models.CharField(max_length=1, choices=type_choices)
 
     def __str__(self):
         return self.name
@@ -30,28 +32,37 @@ def _post_save_receiver(sender,instance,created, **kwargs):
     
 
 
-class Type(models.Model):
-    name = models.CharField(max_length=50)
-    choice = models.BooleanField()
+class Category(models.Model):
+    category_name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return self.category_name
 
+class Type(models.Model):
+    type_name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return type_name
 
 class Food(models.Model):
     name = models.CharField(max_length=50)
     pricePerQuantity = models.IntegerField()
-    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='foods')
+    type = models.ForeignKey(Type,on_delete=models.CASCADE,related_name='foods')
     rating = JSONField(null=True,blank=True)
     orderCount = models.IntegerField(default=0)
     description = models.CharField(max_length=100)
     imageUrl = models.URLField(null=True,blank=True)
 
+
     def __str__(self):
         return self.name
 
 class Customer(models.Model):
-    mac_id = models.CharField(max_length=50)
+    session_id = models.UUIDField(primary_key = True, default=uuid.uuid4, editable=False)
+
+    def __str__(self):
+        return str(self.session_id);
 
 
 class Orders(models.Model):
@@ -61,9 +72,13 @@ class Orders(models.Model):
     dateOfCreation = models.DateTimeField()
     costList = ArrayField(models.IntegerField(),blank=True,null=True)
     totalCost = models.IntegerField(default=0)
-    arrived = models.BooleanField(default=False)
-    paid = models.BooleanField(default=False)
-
+    options =  (
+        ('1', 'pending'),
+        ('2', 'confirmed'),
+    )
+    order_status = models.CharField(max_length=1, choices=options)
+    eta = models.DurationField(default = timedelta(seconds = 0))
+    
     def __str__(self):
-        return str(self.table)
+        return str(str(self.table) + str(self.id))
 
