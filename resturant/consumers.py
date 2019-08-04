@@ -25,8 +25,7 @@ class checkConsumer(AsyncWebsocketConsumer):
         dateOfCreation = text_data_json['dateOfCreation']
         costList = text_data_json['costList']
         totalCost = text_data_json['totalCost']
-        arrived = text_data_json['arrived']
-        paid = text_data_json['paid']
+        order_status = text_data_json['order_status']
         id = text_data_json['id']
         
         await self.channel.layer.group_send(
@@ -39,8 +38,7 @@ class checkConsumer(AsyncWebsocketConsumer):
             'dateOfCreation':dateOfCreation,
             'costList':costList,
             'totalCost':totalCost,
-            'arrived':arrived,
-            'paid':paid,
+            'order_status':order_status,
             'id':id
             }
         )
@@ -52,8 +50,7 @@ class checkConsumer(AsyncWebsocketConsumer):
         dateOfCreation = event['dateOfCreation']
         costList = event['costList']
         totalCost = event['totalCost']
-        arrived = event['arrived']
-        paid = event['paid']
+        order_status = event['order_status']
         id = event['id']
         await self.send(text_data=json.dumps(
             {
@@ -63,8 +60,7 @@ class checkConsumer(AsyncWebsocketConsumer):
                 'dateOfCreation':dateOfCreation,
                 'costList':costList,
                 'totalCost':totalCost,
-                'arrived':arrived,
-                'paid':paid,
+                'order_status':order_status,
                 'id':id
 
                 }))

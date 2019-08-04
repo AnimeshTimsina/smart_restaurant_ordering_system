@@ -1,0 +1,12 @@
+<h1>{{food.name}}</h1>
+<h3>{{food.category}}</h3>
+<h5>{{food.type}}</h5>
+<img src={{food.imageUrl}} style="width:200px;height:200px;"></img>
+<p>{{food.description}}</p>
+<form method="post">
+{% csrf_token %}
+<label for="quantity">Quantity</label>
+<input type="number" name="quantity" id="quantity"></input>
+<br>
+<button type="submit">Order</a>
+</form>

@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.dispatch import receiver, Signal
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
-from .models import Orders
+from .models import Orders,Table
 from django.db.models.signals import m2m_changed
 from .forms import addTableForm
 
-new_order_created = Signal(providing_args = ['table','food','quantity','dateOfCreation','costList','arrived','paid','id'])
+new_order_created = Signal(providing_args = ['table','food','quantity','dateOfCreation','costList','order_status','id'])
 
 def index(request):
     obj = Orders.objects.latest('dateOfCreation')
@@ -14,7 +14,8 @@ def index(request):
     return render(request,'management/managementIndex.html')
 
 def track_orders(request):
-    context = {}
+    tables = Table.objects.all()
+    context = {'tables':tables}
     return render(request,'management/track_orders.html',context)
 
 def broadcast_to_socket(instance):
@@ -29,9 +30,9 @@ def broadcast_to_socket(instance):
         'dateOfCreation':str(instance.dateOfCreation),
         'costList':str(instance.costList),
         'totalCost':str(instance.totalCost),
-        'arrived':str(instance.arrived),
-        'paid':str(instance.paid),
-        'id':str(instance.id)
+        'order_status':str(instance.order_status),
+        'id':str(instance.table.id)
+        
         })
 
 
@@ -48,10 +49,11 @@ def newOrderCreated(sender,instance,action,**kwargs):
         if (action == "post_add"):
                 cost = 0
                 count = 0
+                print(instance.quantity)
+                instance.costList = []
                 for i in instance.food.all():
-                        i.orderCount = i.orderCount + 1
-                        instance.costList.append(i.pricePerQuantity * instance.quantity[count])
-                        cost = cost + (i.pricePerQuantity * instance.quantity[count])
+                        instance.costList.append(i.pricePerQuantity * int(instance.quantity[count]))
+                        cost = cost + (i.pricePerQuantity * int(instance.quantity[count]))
                         count = count + 1
                 instance.totalCost = cost
 

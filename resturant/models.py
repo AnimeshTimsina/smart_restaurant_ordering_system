@@ -8,7 +8,7 @@ from datetime import datetime,timedelta
 
 # Create your models here.
 class Table(models.Model):
-    User = models.OneToOneField(User, verbose_name=("linked_user"), on_delete=models.CASCADE)
+    User = models.OneToOneField(User, verbose_name=("linked_user"), on_delete=models.CASCADE, related_name = 'current_table')
     type_choices = (
         ('1', 'booked'),
         ('2', 'reserved'),
@@ -62,15 +62,15 @@ class Customer(models.Model):
 class Orders(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
     food = models.ManyToManyField(Food)
-    quantity = ArrayField(models.IntegerField())
-    dateOfCreation = models.DateTimeField()
-    costList = ArrayField(models.IntegerField(),blank=True,null=True)
+    quantity = ArrayField(models.IntegerField(),default=list)
+    dateOfCreation = models.DateTimeField(auto_now_add=True)
+    costList = ArrayField(models.IntegerField(),blank=True,default=list)
     totalCost = models.IntegerField(default=0)
     options =  (
         ('1', 'pending'),
         ('2', 'confirmed'),
     )
-    order_status = models.CharField(max_length=1, choices=options)
+    order_status = models.CharField(max_length=1, choices=options,default = '1')
     eta = models.DurationField(default = timedelta(seconds = 0))
     
     def __str__(self):

@@ -2,7 +2,12 @@
 <html>
   <body>
     <h1>Orders</h1>
-    <textarea id="log" cols="100" rows="20"></textarea><br/>
+
+    {% for table in tables%}
+    <h5>{{table}}<h5>
+    <textarea id="log{{table.id}}" cols="100" rows="10"></textarea><br/>
+    {% endfor %}   
+    
   </body>
 
 <script src = "{% static 'js/reconnecting-websocket.js'%}"></script>
@@ -16,9 +21,10 @@ socketVar.onmessage = function(e){
   var dateOfCreation = data['dateOfCreation']
   var costList = data['costList']
   var totalCost = data['totalCost']
-  var arrived = data['arrived']
-  var paid = data['paid']
-  document.querySelector('#log').value+=(" Table : " + table+'\t'+" Food : " + food+'\t'+" Quantity : "+quantity+'\t'+" Total Cost : " + totalCost+'\n')
+  var paid = data['order_status']
+  var id = data['id']
+  document.getElementById('log'+id).value = '';
+  document.getElementById('log'+id).value+=(" Table : " + table+'\t'+" Food : " + food+'\t'+" Quantity : "+quantity+'\t'+" Total Cost : " + totalCost+'\n'+'ID: '+ id + "\n");
 };
 socketVar.onclose=function(e){
   console.error('Socket closed unexpectedly');

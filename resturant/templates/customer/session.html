@@ -21,8 +21,19 @@
 <h2> Trending </h2>
 <ul>
 {% for trend in trending_foods%}
-<li> {{trend}} </li>
+<a href="{% url 'food_details' trend.pk %}"><li> {{trend}} </li></a>
 {% endfor %}
+</ul>
+<h2> Recommended </h2>
+<br>
+<a href="#"> Menu </a>
+<br>
+<a href="#"> Pending order </a>
+<br>
+<a href="#"> Confirmed order </a>
+<br>
+<a href="#"> End session </a>
+
 </ul>
 </body>
 </html>

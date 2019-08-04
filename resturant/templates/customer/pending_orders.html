@@ -1,0 +1,27 @@
+{% for i in orders%}
+<table>
+<tr style="color:blue;">
+<td>Food</td>
+<td>Quantity</td>
+<td>Cost</td>
+</tr>
+{% for instance in order %}
+<tr>
+<td>{{instance.0}}</td>
+<td>{{instance.1}}</td>
+<td>{{instance.2}}</td>
+<td><a style="color:red;" href="{% url 'delete_food_from_order' table_name i.pk forloop.counter0 %}">Delete</a></td>
+</tr>
+
+{% endfor %}
+
+<tr style="color:blue;">
+ <td>Total </td>
+ <td></td>
+ <td>{{totalCost}}</td>
+ </tr>
+
+
+</table>
+<button type="submit">Confirm and pay</button>
+{% endfor %}
