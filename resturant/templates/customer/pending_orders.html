@@ -23,5 +23,9 @@
 
 
 </table>
-<button type="submit">Confirm and pay</button>
+<a href = "{% url 'after_payment' table_name %}">Confirm and pay</a>
 {% endfor %}
+{% if not orders%}
+<p> No orders pending </p>
+<a href="{% url 'sessionBegin' table_name%}"> Home </a>
+{% endif %}

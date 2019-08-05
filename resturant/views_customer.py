@@ -53,25 +53,27 @@ def after_order(request,table_name):
 def pending_orders(request,table_name):
     table = Table.objects.get(User = request.user)
     orders = Orders.objects.filter(table = table).filter(order_status = '1')
-    order = orders[0]
-    order_formatted = []
-    foods = order.food.all()
-    quantities = order.quantity
-    costs = order.costList
-    totalCost = order.totalCost
-    eta = order.eta
-    count = 0
-    for i in foods:
-        order_formatted.append(
-            [
+    try:
+        order = orders[0]
+        order_formatted = []
+        foods = order.food.all()
+        quantities = order.quantity
+        costs = order.costList
+        totalCost = order.totalCost
+        eta = order.eta
+        count = 0
+        for i in foods:
+            order_formatted.append(
+             [
                 foods[count].name,
                 quantities[count],
                 costs[count]
-            ]
-        )
-        count = count+1
-
-    args = {'orders':orders,'order':order_formatted,'totalCost':totalCost,'table_name':table_name}
+             ]
+            )
+            count = count+1
+        args = {'orders':orders,'order':order_formatted,'totalCost':totalCost,'table_name':table_name}
+    except:
+        args = {'orders':orders,'table_name':table_name}
     return render(request,'customer/pending_orders.html',args)
 
 def delete_food_from_order(request,table_name,order_number,food_key):
@@ -85,8 +87,11 @@ def delete_food_from_order(request,table_name,order_number,food_key):
     order.costList.remove(cost_to_delete)
     order.totalCost -= cost_to_delete
     order.save()
+    if not order.food.all().exists():
+        order.delete()
+
     print(food_to_delete,quantity_to_delete,cost_to_delete)
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect('pending_orders',table_name = table_name)
 
 def after_payment(request,table_name):
     table = Table.objects.get(User = request.user)
