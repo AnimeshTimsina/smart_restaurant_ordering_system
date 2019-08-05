@@ -9,5 +9,5 @@ urlpatterns = [
     path('<str:table_name>/after_order',views.after_order,name='after_order'),
     path('<str:table_name>/pendingorders',views.pending_orders,name='pending_orders'),
     path('<str:table_name>/deletefood/<int:order_number>/<int:food_key>',views.delete_food_from_order,name='delete_food_from_order'),
-
+    path('<str:table_name>/paymentsuccess',views.after_payment,name='after_payment'),
 ]

@@ -85,8 +85,13 @@ def delete_food_from_order(request,table_name,order_number,food_key):
     order.costList.remove(cost_to_delete)
     order.totalCost -= cost_to_delete
     order.save()
-
-
-
     print(food_to_delete,quantity_to_delete,cost_to_delete)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def after_payment(request,table_name):
+    table = Table.objects.get(User = request.user)
+    order = Orders.objects.filter(table = table).filter(order_status = '1')[0] #'1' means pending
+    order.order_status = '2' #'2' means confirmed
+    order.save()
+    args = {'table_name':table_name}
+    return render(request,'customer/after_payment.html',args)

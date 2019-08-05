@@ -7,6 +7,16 @@ from django.db.models.signals import post_save,pre_save
 from datetime import datetime,timedelta
 
 # Create your models here.
+class RestaurantInfo(models.Model):
+    name = models.CharField(max_length=100, blank = True, null = True)
+    service_tax = models.DecimalField(max_digits=10, decimal_places = 5, default = 0)
+    description = models.CharField(max_length=1000, blank = True, null = True)
+
+    def __str__(self):
+        return self.name
+
+
+
 class Table(models.Model):
     User = models.OneToOneField(User, verbose_name=("linked_user"), on_delete=models.CASCADE, related_name = 'current_table')
     type_choices = (
