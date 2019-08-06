@@ -1,0 +1,13 @@
+<h3> Confirmed orders </h3>
+<p>Click to view details and estimated time remaning</p>
+<table>
+
+{% for order in orders%}
+<tr>
+<td><a href="{% url 'confirmed_order_details' table_name order.pk%}">Order-{{forloop.counter}}</a></td>
+</tr>
+{% endfor %}
+</table>
+{% if not orders%}
+<p> No confirmed orders </p>
+{% endif%}

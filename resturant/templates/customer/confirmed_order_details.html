@@ -1,0 +1,56 @@
+{% load static%}
+<html>
+<head>
+<script src="{% static 'js/countdown.js'%}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.2/jquery.plugin.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.min.js"></script>
+
+</head>
+<body>
+<h2> Estimated time remaining </h2>
+<div id="#cd">
+</div>
+<footer>
+   <p>(Clear the “firstTime” and “cdTime" Cookies and then reload the page to start the timer over.)</p>
+</footer>
+<script>
+$(document).ready(function() {
+    var additionalMinutes = {{eta}};
+    var totalTime = new Date();
+    totalTime.setMinutes( totalTime.getMinutes() + additionalMinutes );
+    var actualMinutes = totalTime.getMonth()+1
+    var finalTime = totalTime.getFullYear() + "/" + actualMinutes + "/" + totalTime.getDate() + " " + totalTime.getHours() + ":" + totalTime.getMinutes() + ":" + totalTime.getSeconds()
+    if (!Cookies.get('cdTime')) {
+      var now = new Date();
+        // First time on page
+      Cookies.set('firstTime', now, {
+         expires: 7,
+         path: '/'
+      });
+      Cookies.set('cdTime', totalTime, {
+         expires: 7,
+         path: '/'
+      });
+
+      var tempRunTimer = new Date(Cookies.get('cdTime'));  
+      var runTimer = tempRunTimer.getFullYear() + "/" + (tempRunTimer.getMonth()+1) + "/" + tempRunTimer.getDate() + " " + tempRunTimer.getHours() + ":" + tempRunTimer.getMinutes() + ":" + tempRunTimer.getSeconds()
+      
+   } else {
+      var cdTime = new Date(Cookies.get('cdTime')); 
+      var runTimerTemp = new Date(cdTime);
+      var runTimer = runTimerTemp.getFullYear() + "/" + (runTimerTemp.getMonth()+1) + "/" + runTimerTemp.getDate() + " " + runTimerTemp.getHours() + ":" + runTimerTemp.getMinutes() + ":" + runTimerTemp.getSeconds() 
+   }
+   console.log(runTimer)
+  $('#cd').countdown(runTimer,function(event) {
+      console.log('Hell yeah!')
+       var $this = $(this).html(event.strftime(''
+       + '<div><span>%H</span><span>Hours</span></div>'
+       + '<div><span>%M</span><span>Minutes</span></div>'
+       + '<div><span>%S</span><span>Seconds</span></div>'
+       ))
+   });
+});
+</script>
+</body>
+</html>

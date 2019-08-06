@@ -81,8 +81,10 @@ class Orders(models.Model):
         ('2', 'confirmed'),
     )
     order_status = models.CharField(max_length=1, choices=options,default = '1')
-    eta = models.DurationField(default = timedelta(seconds = 0))
+    eta = models.CharField(default=0,null=True,blank=True,max_length=3)
     
     def __str__(self):
         return str(str(self.table) + str(self.id))
 
+    def get_eta_in_seconds(self):
+        return (float(self.eta)/60)

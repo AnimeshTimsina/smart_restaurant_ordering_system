@@ -100,3 +100,36 @@ def after_payment(request,table_name):
     order.save()
     args = {'table_name':table_name}
     return render(request,'customer/after_payment.html',args)
+
+def confirmed_orders(request,table_name):
+    table = Table.objects.get(User = request.user)
+    orders = Orders.objects.filter(table = table).filter(order_status = '2')
+    
+    args = {'orders':orders,'table_name':table_name}
+    return render(request,'customer/confirmed_orders.html',args)
+
+def confirmed_order_details(request,table_name,key):
+    table = Table.objects.get(User=request.user)
+    order = Orders.objects.get(pk=key)
+    
+    try:
+        order_formatted = []
+        foods = order.food.all()
+        quantities = order.quantity
+        costs = order.costList
+        totalCost = order.totalCost
+        eta = order.eta
+        count = 0
+        for i in foods:
+            order_formatted.append(
+             [
+                foods[count].name,
+                quantities[count],
+                costs[count]
+             ]
+            )
+            count = count+1
+        args = {'eta':order.eta,'order_formatted':order_formatted,'totalCost':totalCost,'table_name':table_name}
+    except:
+        args = {'eta':order.eta,'table_name':table_name}
+    return render(request,'customer/confirmed_order_details.html',args)
