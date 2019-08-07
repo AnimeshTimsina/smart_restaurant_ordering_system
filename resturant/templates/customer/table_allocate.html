@@ -1,19 +1,50 @@
-<h1> Choose your table </h1>
-<ul>
-{% for t in table%}
+{% load staticfiles %}
 
-<a href = "{% url 'sessionBegin' t.name%}">
-<li>
-{% if t.choice_type == '1'%}
-<h1 style="color:red;">{{t}}</h1>
-{% elif t.choice_type == '2'%}
-<h1 style="color:blue;">{{t}}</h1>
-{% else %}
-<h1 style="color:green;">{{t}}</h1>
-{% endif %}
 
-</li>
-</a>
-
-{% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/table_allocate.css' %}">
+    <title>Document</title>
+</head>
+<body style=" background-color: rgba(235, 223, 223, 1.0);">
+    
+    <div class="container">
+        <img src="{% static 'img/tableallocate-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" class="mx-auto d-block" style="width:50%"> 
+      </div>
+      <div class="container">
+      <h1><center>Choose your table</center></h1>
+      </div>
+    
+    {% for t in table %}
+      <div class="container" style="align-content: center">
+        <div class="row" style="margin-top: 10%">
+                {% if t.choice_type == '1'%}
+                    <div class="col"> <a href="{% url 'sessionBegin' t.name%}" class="btn btn-info btn-lg " role="button" style="width:75% ;height: 150%">{{t}}</a></div>
+                {% elif t.choice_type == '2'%}
+            
+                    <div class="col"> <a href="{% url 'sessionBegin' t.name%}" class="btn btn-primary btn-lg " role="button" style="width:75% ;height: 150%">{{t}}</a></div>
+                {% else %}
+                    <div class="col"> <a href="{% url 'sessionBegin' t.name%}" class="btn btn-success btn-lg " role="button" style="width:75% ;height: 150%">{{t}}</a></div>
+                {% endif %}       
+        </div>
+    </div>
+    {% endfor %}
+    
+    
+    <div class="container">
+        <div class="row" style="margin-top: 30%">
+            <span class="badge badge-pill badge-primary" style="margin-left: 10%">Reserved</span>
+            <span class="badge badge-pill badge-info" style="margin-left: 10%">Booked</span>
+            <span class="badge badge-pill badge-success" style="margin-left: 10%">Available</span>
+        </div>
+    </div>
+</body>
+</html>

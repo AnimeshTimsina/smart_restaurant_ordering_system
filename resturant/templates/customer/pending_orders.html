@@ -1,33 +1,64 @@
-<h3> Confirmed orders </h3>
-{% for i in orders%}
-<table>
-<tr style="color:blue;">
-<td>Food</td>
-<td>Quantity</td>
-<td>Cost</td>
-</tr>
-<h3> Pending orders </h3>
-{% for instance in order %}
-<tr>
-<td>{{instance.0}}</td>
-<td>{{instance.1}}</td>
-<td>{{instance.2}}</td>
-<td><a style="color:red;" href="{% url 'delete_food_from_order' table_name i.pk forloop.counter0 %}">Delete</a></td>
-</tr>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/Menu.css' %}">
+    <title>Apple Resturant</title>
+    
+</head>
+<body style="background-color: rgba(235, 223, 223, 1.0);">
+    <div class="container-fluid">
 
-{% endfor %}
+        <div class="row">
+            <div class="col" ><img src="{% static 'img/orderissued-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" alt="Apple Resturant" width="62%"></div>
+            <div class="col" style="text-align:end; margin-top:6%"><a href="{% url 'table_allocate' %}"><img src="{% static 'img/orderissued-home-icon@2x.png' %}" alt="logo" width="28%"></a></div>
+        </div>
+        </div>
+            <div class="container-fluid" >
+                    {% for i in orders%}
+                    <div class="row" style="margin-bottom: 5%; margin-left: 4%">
+                        <div class="col" ><h4 style="font-size:5.5vw; text-align: initial">Food</h4></div>
+                        <div class="col" ><h3 style="font-size:5.5vw; text-align: center">Quantity</h4></div>
+                        <div class="col" ><h4 style="font-size:5.5vw; text-align: end">Cost</h4></div>
+                        <div class="col" ><h4 style="font-size:5.5vw; text-align: end"></h4></div>
+                    </div>
+                    {% for instance in order %}
+                    <div class="row" style="margin-bottom: 5%; margin-left: 4%">
+                        <div class="col" style="font-size: 4vw; text-align: initial" >{{instance.0}}</div>
+                        <div class="col" style="font-size: 4vw; text-align: center">{{instance.1}}</div>
+                        <div class="col" style="font-size: 4vw; text-align: end">{{instance.2}}</div>
+                        <div class="col" style="font-size: 4vw; text-align: end"><a style="color:red;" href="{% url 'delete_food_from_order' table_name i.pk forloop.counter0 %}">Delete</a></div>
+                    </div>
+                    {% endfor %}
+                    <div class="row" style="margin-top: 5%; margin-left: 4%">
+                        <div class="col" style="font-size: 4.5vw; text-align: initial" >Total</div>
+                        <div class="col" style="font-size: 4.5vw; text-align: center"></div>
+                        <div class="col" style="font-size: 4.5vw; text-align: end">{{totalCost}}</div>
+                        <div class="col" style="font-size: 4.5vw; text-align: end"></div>
+                    </div>
 
-<tr style="color:blue;">
- <td>Total </td>
- <td></td>
- <td>{{totalCost}}</td>
- </tr>
+                    <div class="row" style="margin-top: 15%; margin-left: 4%">
+                        <div class="col" style="font-size: 5.5vw; text-align: initial"><a href = "{% url 'after_payment' table_name %}">Confirm and pay</a></div>
+                    </div>
+                    
+                    {% endfor %}
+                    {% if not orders%}
+                    <div class="row" style="margin-top: 5%; margin-left: 4%">
+                        <div class="col" style="font-size: 4.5vw; text-align: initial" ><h3>No orders pending</h3></div>
+                        <div class="col"> <a href="{% url 'sessionBegin' table_name%}" class="btn btn-primary btn-lg" role="button" style="width:50% ;height: 70%"><center>Home</center></a></div>
+                    </div>
 
+                    {% endif %}
 
-</table>
-<a href = "{% url 'after_payment' table_name %}">Confirm and pay</a>
-{% endfor %}
-{% if not orders%}
-<p> No orders pending </p>
-<a href="{% url 'sessionBegin' table_name%}"> Home </a>
-{% endif %}
+            </div>
+    </div>
+    
+</body>
+</html>

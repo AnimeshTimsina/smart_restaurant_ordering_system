@@ -1,12 +1,76 @@
-<h1>{{food.name}}</h1>
-<h3>{{food.category}}</h3>
-<h5>{{food.type}}</h5>
-<img src={{food.imageUrl}} style="width:200px;height:200px;"></img>
-<p>{{food.description}}</p>
-<form method="post">
-{% csrf_token %}
-<label for="quantity">Quantity</label>
-<input type="number" name="quantity" id="quantity"></input>
-<br>
-<button type="submit">Order</a>
-</form>
+       
+       {% load staticfiles %}
+       {% load static %}
+       <!DOCTYPE html>
+       <html lang="en">
+       <head>
+           <meta charset="UTF-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <meta http-equiv="X-UA-Compatible" content="ie=edge">
+           <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+           <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+           <script src="{% static 'js/popper.min.js' %}"></script>
+           <script src="{% static 'js/bootstrap.min.js' %}"></script>
+           <link rel="stylesheet" href="{% static 'css/Menu.css' %}">
+           <title>Apple Resturant</title>
+           <style> 
+                @font-face {
+                   font-family: myFont;
+                   src: url('fonts/COMIC.TTF');
+                }
+                
+                * {
+                   font-family: myFont;
+                }
+                </style>
+       </head>
+       <body style="background-color: rgba(235, 223, 223, 1.0);">
+           <div class="container-fluid">
+               <div class="row">
+                   <div class="col" ><img src="{% static 'img/orderissued-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" alt="Apple Resturant" width="62%"></div>
+                   <div class="col" style="text-align:end; margin-top:6%"><a href="{% url 'table_allocate' %}"><img src="{% static 'img/orderissued-home-icon@2x.png' %}" alt="logo" width="28%"></a></div>
+               </div>
+           </div>
+       
+           <div class="container">
+       
+            <br>
+            <div class="row">
+                <div class="col" style="font-size: 5.5vw; margin-left: 4%">{{food.name}}
+                    <img src="{% static 'img/menu-line-1@2x.png' %}" width="70%">
+                    <h6 style="font-size: 3.5vw">{{food.category}}</h6>{{food.pricePerQuantity}}</div>
+                <div class="col" style="text-align: end"><img src={{food.imageUrl}} width="100%"></div>
+            </div>
+            <br>
+            <div class="row" style="margin-left: 60%">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="number" name="quantity" id="quantity"></input>
+                    <button type="submit" class="btn btn-primary" style="margin-left: 20%">Order</button>
+                </form>   
+            </div>
+            <div>
+                <h4>Description</h4>
+                <p>
+                    {{food.description}}
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="container" style="margin-left: initial">
+           <a href="#"><img src="{% static 'img/confirmedorders-icons8-back-64@2x.png' %}" width="10%"></a> 
+        </div>
+    
+         
+           </div>  
+       
+       </body>
+       </html>
+       
+       
+       
+       
+       
+       
+       
+       

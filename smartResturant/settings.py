@@ -112,9 +112,9 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'minorprojectdb',
-        'USER': '',
-        'PASSWORD': '',
+        'NAME': 'restaurantdb',
+        'USER': 'restaurantdb',
+        'PASSWORD': 'password1234',
         'HOST': 'localhost',
         'PORT': '5432',
     }
