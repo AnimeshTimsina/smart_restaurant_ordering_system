@@ -1,17 +1,36 @@
+{% extends 'management/basemanagement.html' %}
 {% load static%}
-<html>
-  <body>
+{% block content%}
+<div>
     <h1>Orders</h1>
-
+  </div>
+  <div style="padding:30px;">
     {% for table in tables%}
-    <h5>{{table}}<h5>
-    <textarea id="log{{table.id}}" cols="100" rows="10"></textarea><br/>
-    {% endfor %}   
-    
-  </body>
+    <div style="padding-bottom:30px;">
+    <h5>{{table}}</h5>
+    {% comment %} <textarea id="log{{table.id}}" cols="100" rows="10"></textarea><br/> {% endcomment %}
+
+    <table id="log{{table.id}}">
+    <tr>
+    <td>Food</td>
+    <td>Quantity</td>
+    </tr>
+
+    </table>
+
+    </div>
+
+
+    {% endfor %}
+      </div>
+{% endblock content %}
+
+{% block extra_js %}
 
 <script src = "{% static 'js/reconnecting-websocket.js'%}"></script>
 <script>
+
+
 var socketVar = new ReconnectingWebSocket('ws://'+window.location.host+'/ws/management/trackOrders/');
 socketVar.onmessage = function(e){
   var data=JSON.parse(e.data);
@@ -23,11 +42,23 @@ socketVar.onmessage = function(e){
   var totalCost = data['totalCost']
   var paid = data['order_status']
   var id = data['id']
-  document.getElementById('log'+id).value = '';
-  document.getElementById('log'+id).value+=(" Table : " + table+'\t'+" Food : " + food+'\t'+" Quantity : "+quantity+'\t'+" Total Cost : " + totalCost+'\n'+'ID: '+ id + "\n");
+
+
+  var tbl = document.getElementById("log"+id)
+
+  var tblrow = tbl.insertRow(-1)
+  var cell1 = tblrow.insertCell(0)
+  var cell2 = tblrow.insertCell(1)
+  var cell3 = tblrow.insertCell(2)
+  cell1.innerHTML = food
+  cell2.innerHTML = quantity
+
+
+
+
 };
 socketVar.onclose=function(e){
   console.error('Socket closed unexpectedly');
 }
 </script>
-</html>
+{% endblock extra_js %}

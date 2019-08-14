@@ -1,0 +1,21 @@
+1|Buff C Momo|0|1|0|0
+2|Buff Momo(Steam)|0|1|0|0
+3|Steam Momo|1|0|0|0
+4|Chicken Momo|0|1|0|0
+5|Veg C momo|1|0|0|0
+6|Chicken Chilly|0|1|0|0
+7|chicken sandheko|0|1|0|0
+8|Chicken Wings|0|1|0|0
+9|French Fries|1|0|0|0
+10|Mushroom Chilly|1|0|0|0
+11|Chicken Biryani|0|1|0|0
+12|Steamed Rice|1|0|0|0
+13|Veg Biryani|1|0|0|0
+14|Fried Rice (chicken)|0|1|0|0
+15|Plain Curd|1|0|0|0
+16|Seasonal Mix Fresh Fruits|1|0|0|0
+17|Black Tea|0|0|1|0
+18|Coke|0|0|1|0
+19|Local raksi|0|0|0|1
+20|Green Salad|1|0|0|0
+21|Spicy Chicken Salad|0|1|0|022	fried momo	1	0	0	0	

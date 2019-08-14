@@ -1,0 +1,21 @@
+
+{% extends 'management/restaurantmanagement.html' %}
+{% load staticfiles %}
+{% block content %}
+{{ block.super }}
+<div class="col-md-9">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title"> Delete Table</h3>
+      <form method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <p class="card-text mb-auto">Are you sure you want to delete {{table}}?</p>
+      <button class="btn btn-info" type="Submit">Yes</button>
+      <a href="{% url 'viewTable' %}" class="btn btn-info" align="center">Cancel</a>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

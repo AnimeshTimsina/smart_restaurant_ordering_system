@@ -1,0 +1,42 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/Menu.css' %}">
+    <title>Apple Resturant</title>
+    <style> 
+         @font-face {
+            font-family: myFont;
+            src: url('Luminari.ttf');
+         }
+         
+         * {
+            font-family: myFont;
+         }
+         .col1{
+             display:flex;
+             flex-direction: row;
+             justify-content: space-between;
+         }
+         </style>
+</head>
+<body style="background-color: rgba(235, 223, 223, 1.0);">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" ><img src="{% static 'img/orderissued-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" alt="Apple Resturant" width="62%"></div>
+          
+        </div>
+    </div>
+    <div>
+        <img src="{% static 'img/thankyou-5a3a739224cab415189535151378011415074154.png' %}" width="85%">
+        <center><img src="{% static 'img/thankyou-httppluspngcomimg-pngdownload-thank-you-png-images-transparent-gallery-advertisement-1000@2x.png' %}" width="60%"></center>
+    </div>
+ 

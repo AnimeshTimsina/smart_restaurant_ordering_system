@@ -15,7 +15,7 @@ SECRET_KEY = 'ic(6t#ikqi2uha_l2+y2zs0o-)4n#*#3#k%o9(n--y65+%53@8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.252']
 
 
 # Application definition
@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'resturant',
     'crispy_forms',
-    'channels'
+    'channels',
+    'paypal.standard.ipn',
+
 
 ]
 
@@ -112,8 +114,8 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'restaurantdb',
-        'USER': 'restaurantdb',
+        'NAME': 'srosdb',
+        'USER': 'postgres',
         'PASSWORD': 'password1234',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -172,5 +174,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT =os.path.join(BASE_DIR,'media')
+MEDIA_URL ='/media/'
+PAYPAL_RECEIVER_EMAIL ='animesh506@gmail.com'
+PAYPAL_TEST = True
 LOGIN_REDIRECT_URL = 'index/'
-

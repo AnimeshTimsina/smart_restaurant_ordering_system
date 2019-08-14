@@ -1,4 +1,5 @@
 {% extends 'accounts/base.html' %}
+{% load staticfiles %}
 {%load crispy_forms_tags %}
 {% block css_styles%}
   <style>
@@ -11,14 +12,18 @@
   }
 
   .login-box{
-    padding: 200px 10px 0px;
+    padding: 100px 0px 400px 200px;
+    width:800px;
+    height:600px;
   }
 
   .card {
-    padding:30px;
+    padding:50px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    border-radius: 50px;
+    border-radius: 40px;
+    /* width:1000px;
+    height:600px; */
   }
 
   .card:hover {
@@ -28,12 +33,12 @@
   .container {
     padding: 5px 16px;
   }
-  
-  @media only screen and (min-width: 500px){
+
+  /* @media only screen and (min-width: 500px){
     .login-box {
       padding: 200px 20% 0px;
     }
-  }
+  } */
   </style>
 {% endblock css_styles%}
 {% block content%}
@@ -44,10 +49,8 @@
 
 <form method="POST">
   {% csrf_token %}
+    <img src="{% static 'img/heading.png' %}" class ="rounded mx-auto d-block" style="width:100px;height:100px;"/>
   <fieldset class="form-group">
-    <legend class="border-bottom mb-4">
-      Log In
-    </legend>
     {{form|crispy}}
   </fieldset>
   <div class="form-group">

@@ -1,0 +1,39 @@
+{% extends 'management/menu.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{{block.super}}
+<div class = "col-5">
+  <div class="row mb-2 d-flex flex-row" >
+      <div class="col-6">
+        <div class="row no-gutters border-flush rounded overflow-hidden shadow-sm ">
+          <div class="col pt-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">{{f.category}}</strong>
+            <h4 class="mb-2">{{f.name}}</h4>
+            <div class="mb-2 text-muted">{{f.type}}</div>
+            <h2 class="display-5">Rs.{{f.pricePerQuantity}}</h2>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-6 d-none d-lg-block p-2">
+          <img src="{{f.imageUrl }}" alt ="Food " class ="rounded mx-auto d-block img-thumbnail " style="width:220px;height:180px;"/>
+      </div>
+
+    </div>
+    <div class = "row mb-2 ">
+      <div class = "col-12">
+        <h2 class="display-5">Description</h2>
+        <p class="card-text mb-auto">{{f.description}}</p>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-12 d-flex flex-row justify-content-around">
+        <div class="p-3" ><a href="{% url 'editFood' f.pk %}"><img src="{% static 'img/edit.png' %}" class ="rounded mx-auto d-block" style="width:100px;height:100px;"/></a></div>
+        <div class="p-3"><a href="{% url 'deleteFood' f.pk %}"><img src="{% static 'img/delete.png' %}" class ="rounded mx-auto d-block" style="width:100px;height:100px;"/></a></div>
+
+      </div>
+
+    </div>
+</div>
+{% endblock content %}

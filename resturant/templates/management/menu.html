@@ -1,0 +1,90 @@
+{% extends 'management/basemanagement.html' %}
+{% load staticfiles %}
+{% block content%}
+<!-- <div class ="container"> -->
+  <!-- <div class="row">
+    <div class="col-lg-2">
+
+    <span style="color:forestgreen;">Categories</span>
+      <div class="hidden-sm-down"><div class="dropdown-divider"></div></div>
+      <div class="list-group ">
+
+        {% for c in category%}
+          <a href="#" class="list-group-item"> {{c}} </a>
+        {% endfor%}
+
+      </div>
+
+    </div>
+  </div> -->
+
+<!-- <div class="row"> -->
+  <div class="col-3 ">
+    <div class="card">
+    <div class="card-body">
+      <div class="sticky-side">
+  		<ul class="nav flex-md-column flex-row">
+  			<li class="recommended"><span style="color:forestgreen;">Categories</span></li>
+  			<li class="hidden-sm-down"><div class="dropdown-divider"></div></li>
+            {% for c in category%}
+  			<li style="margin-bottom: 0.5rem !important;">
+  	      <a href="#i{{c.id }}"><div class="d-flex flex-row justify-content-between"> <div>{{c}}</div>              <div>{{c.foods.count}}</div></div></a>
+  			</li>
+        {% endfor%}
+        <li class="hidden-sm-down"><div class="dropdown-divider"></div></li>
+
+        <li class="recommended"><a href="{% url 'addCategory' %}"><div class="d-flex flex-row justify-content-between"> <div><span style="color:forestgreen;">Add New Category</span></div>              <div class="ml-2"><img src="{% static 'img/add_button.png' %}" class ="rounded mx-auto d-block" style="width:30px;height:25px;"/></div></div></a></li>
+  			<li class="hidden-sm-down"><div class="dropdown-divider"></div></li>
+
+        <li class="recommended"><a href="{% url 'addFoodType' %}"><div class="d-flex flex-row justify-content-between"> <div><span style="color:forestgreen;">Add New Food Type</span></div>              <div class="ml-2"><img src="{% static 'img/add_button.png' %}" class ="rounded mx-auto d-block" style="width:30px;height:25px;"/></div></div></a></li>
+        <li class="hidden-sm-down"><div class="dropdown-divider"></div></li>
+
+        <li class="recommended"><a href="{% url 'addFood' %}"><div class="d-flex flex-row justify-content-between"> <div><span style="color:forestgreen;">Add New Food Item</span></div>              <div class="ml-2"><img src="{% static 'img/add_button.png' %}" class ="rounded mx-auto d-block" style="width:30px;height:25px;"/></div></div></a></li>
+        <li class="hidden-sm-down"><div class="dropdown-divider"></div></li>
+
+  		</ul>
+  	</div>
+  </div>
+  </div>
+  </div>
+  <!-- <div class ="col-md-3">
+
+  <span style="color:forestgreen;">Categories</span>
+    <div class="hidden-sm-down"><div class="dropdown-divider"></div></div>
+    <div class="list-group ">
+
+      {% for c in category%}
+        <a href="#" class="list-group-item"> {{c}} </a>
+      {% endfor%}
+
+    </div> -->
+
+  <div class = "col-4" style="overflow-y:scroll;height:45vw">
+    <div class="card">
+    <div class = "card-body">
+  <ul class="nav flex-md-column flex-row">
+    {% for c in category %}
+      	<li id="i{{ c.id }}">
+          <div class="d-flex flex-row justify-content-between">
+            <div><span style="color:forestgreen;">{{c}}</span></div>
+            <div class="ml-auto"><a href="{% url 'editCategory' c.pk %}"><img src="{% static 'img/edit.png' %}" class ="rounded mx-auto d-block" style="width:20px;height:20px;"/></a></div>
+            <div class="pl-3" ><a href="{% url 'deleteCategory' c.pk %}"><img src="{% static 'img/delete.png' %}" class ="rounded mx-auto d-block" style="width:20px;height:20px;"/></a></div>
+           </div>
+         </li>
+        <li class="hidden-sm-down"><div class="dropdown-divider"></div></li>
+        <ul class="nav flex-md-column flex-row mb-5">
+          {% for f in c.foods.all %}
+           <li><a href="{% url 'viewFood' f.id %}" id="i{{ f.id }}"><div class="d-flex flex-row justify-content-between"> <div>{{f.name}}</div>              <div>Rs.{{f.pricePerQuantity}}</div></div></a></li>
+          {% endfor %}
+
+        </ul>
+
+    {% endfor %}
+</ul>
+</div>
+</div>
+
+</div>
+<!-- </div>
+</div> -->
+{% endblock content%}

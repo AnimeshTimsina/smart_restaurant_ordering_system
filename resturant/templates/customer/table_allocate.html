@@ -13,32 +13,52 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/table_allocate.css' %}">
     <title>Document</title>
+    <style media="screen">
+#grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-gap: 0px;
+  }
+#grid > div {
+margin-left:10px;
+font-size: 1vw;
+padding:20px;
+border-radius:8px;
+ }
+.buton{
+width:20vw;
+height:20vw;
+align-self: center;
+}
+</style>
 </head>
 <body style=" background-color: rgba(235, 223, 223, 1.0);">
-    
+
     <div class="container">
-        <img src="{% static 'img/tableallocate-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" class="mx-auto d-block" style="width:50%"> 
+        <img src="{% static 'img/tableallocate-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" class="mx-auto d-block" style="width:50%">
       </div>
       <div class="container">
       <h1><center>Choose your table</center></h1>
       </div>
-    
-    {% for t in table %}
-      <div class="container" style="align-content: center">
-        <div class="row" style="margin-top: 10%">
-                {% if t.choice_type == '1'%}
-                    <div class="col"> <a href="{% url 'sessionBegin' t.name%}" class="btn btn-info btn-lg " role="button" style="width:75% ;height: 150%">{{t}}</a></div>
-                {% elif t.choice_type == '2'%}
-            
-                    <div class="col"> <a href="{% url 'sessionBegin' t.name%}" class="btn btn-primary btn-lg " role="button" style="width:75% ;height: 150%">{{t}}</a></div>
-                {% else %}
-                    <div class="col"> <a href="{% url 'sessionBegin' t.name%}" class="btn btn-success btn-lg " role="button" style="width:75% ;height: 150%">{{t}}</a></div>
-                {% endif %}       
-        </div>
-    </div>
-    {% endfor %}
-    
-    
+
+      <div id="grid">
+                 {% for t in table %}
+                   <div>
+                       {% if t.choice_type == '1'%}
+                           <a href="{% url 'welcome' t.name%}" class="btn btn-info btn-lg buton" role="button"><b>{{t}}</b></a>
+                       {% elif t.choice_type == '2'%}
+
+                           <a href="{% url 'welcome' t.name%}" class="btn btn-primary btn-lg buton" role="button">{{t}}</a>
+                       {% else %}
+                           <a href="{% url 'welcome' t.name%}" class="btn btn-success btn-lg buton" role="button">{{t}}</a>
+                       {% endif %}
+                   </div>
+                 {% endfor %}
+
+               </div>
+
+
+
     <div class="container">
         <div class="row" style="margin-top: 30%">
             <span class="badge badge-pill badge-primary" style="margin-left: 10%">Reserved</span>

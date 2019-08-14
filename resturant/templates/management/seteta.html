@@ -1,0 +1,19 @@
+
+{% extends 'management/restaurantmanagement.html' %}
+{% load staticfiles %}
+{% block content %}
+{{block.super}}
+<div class="col-md-9">
+  <div class="card" style="overflow-y:scroll;">
+    <div class="card-body">
+      <h3 class="card-title"> Add Table </h3>
+      <form method="POST">
+      {% csrf_token %}
+      <label for="estimated_time">Set estimated time</label>
+      <input type="number" name="eta" id="estimated_time"></input>
+      <button type="submit">Set</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

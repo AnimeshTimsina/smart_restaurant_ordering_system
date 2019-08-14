@@ -1,0 +1,27 @@
+
+{% extends 'management/restaurantmanagement.html' %}
+{% load staticfiles %}
+{% block content %}
+{{block.super}}
+<div class="col-md-9">
+  <div class="card" style="overflow-y:scroll;">
+    <div class="card-body">
+      <h3 class="card-title"> Confirmed Orders</h3>
+      {% for order in orders%}
+      <div style="padding:30px;">
+      <p>Table: {{order.table}}</p>
+      <p>Food:
+      {%for food in order.food.all%}
+      {{food}}
+      {% endfor %}
+      </p>
+      <p>
+      {{order.quantity}}
+      </p>
+      <a href="{% url 'set_eta' order.pk%}" class="btn btn-info">Set ETA </a>
+      </div>
+      {% endfor%}
+    </div>
+  </div>
+</div>
+{% endblock content %}

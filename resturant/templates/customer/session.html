@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col" ><img src="{% static 'img/orderissued-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" alt="Apple Resturant" width="62%"></div>
-            <div class="col" style="text-align:end; margin-top:6%;margin-right: 4%"><a href="{% url 'table_allocate' %}"><img src="{% static 'img/orderissued-home-icon@2x.png' %}" alt="logo" width="28%"></a></div>
+            <div class="col" style="text-align:end; margin-top:6%;margin-right: 4%"><a href="{% url 'sessionBegin' table_name%}"><img src="{% static 'img/orderissued-home-icon@2x.png' %}" alt="logo" width="28%"></a></div>
         </div>
     </div>
 <div class="row" >
@@ -29,8 +29,8 @@
             {% endif %}
     </div>
     <div class="col" style="text-align: end">
-            <a href="#" class="btn btn-danger " role="button" >End Session</a>
-        </div>  
+            <a href="{% url 'bill' table_name%}" class="btn btn-danger " role="button" >End Session</a>
+        </div>
 </div>
 
 <br>
@@ -38,31 +38,32 @@
       <h3 class="trending">Trending</h3>
       <br>
       <br>
-       
+
         <div class="row" style="margin-left: 4%; margin-right: 2%">
                 {% for trend in trending_foods%}
                 <div class="col" >
-                        <a href="{% url 'food_details' trend.pk %}"><img class="item-c" src={{trend.imageUrl}} width="100%"></a>
+                        <a href="{% url 'food_details' table_name trend.pk %}"><img class="item-c" src={{trend.imageUrl}} style="width:92px;height:70px;"></a>
                     </div>
                     {% endfor %}
             </div>
-       
-      
+
+
     </div>
-    
+
     <br>
     <br>
     <div>
       <h3 class="trending">Recommended</h2>
+       <div class="row" style="margin-left: 4%; margin-right: 2%">
+                {% for recommended in recommended_foods%}
+                <div class="col" >
+                        <a href="{% url 'food_details' table_name recommended.pk %}"><img class="item-c" src={{recommended.imageUrl}} style="width:92px;height:70px;"></a>
+                    </div>
+                    {% endfor %}
+            </div>
       <br>
       <br>
-      <div class="row" style="margin-left: 4%; margin-right: 2%">
-            {% for trend in trending_foods%}
-            <div class="col" >
-                    <a href="#"><img class="item-c" src="{% static 'img/menu-chicken-momos-with-tomato-achar-46671-1jpeg@2x.png' %} " width="100%"></a>
-                </div>
-            {% endfor %}
-        </div>
+    
 
     </div>
 
@@ -75,7 +76,7 @@
     <br>
     <br>
     <div class="container" style="text-align: center; position: relative; text-align: center">
-        <img src="{% static 'img/session-rectangle@2x.png' %}" width="40%">
+       <a href="{% url 'menu' table_name%}"> <img src="{% static 'img/session-rectangle@2x.png' %}" width="40%"></a>
         <div class="centered" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: bisque">Menu</div>
     </div><br>
     <div class="row">

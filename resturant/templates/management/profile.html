@@ -1,0 +1,81 @@
+{% extends 'management/restaurantmanagement.html' %}
+{% load staticfiles %}
+{% block content %}
+{{block.super}}
+
+
+
+  <div class="card col-md-9" style="overflow-y:scroll;">
+     <div class="card-body">
+
+        <div class="box box-top-border">
+            <div class="box-header with-border">
+                <h4 class="box-title display-5">Welcome <b>{{user}}</b></h4>
+            </div>
+            <div class="box-body">
+              <div class = "row">
+                <div class="col-md-4  p-2">
+
+                  <img src="{{user.profile.image.url }}" alt ="Profile Image " class ="rounded mr-2 d-block img-thumbnail " style="width:200px;height:200px;"/>
+                </div>
+
+                  <div class="col-md-6">
+                      <div class="box box-top-border">
+                          <div class="box-header with-border d-flex justify-content-start">
+                              <h3 class="box-title">Personal Information:</h3 >
+                              <div class="px-3" ><a href="{% url 'editProfile' user.profile.pk %}"><img src="{% static 'img/edit.png' %}"  class ="rounded mx-auto d-block" style="width:30px;height:30px;"/></a></div>
+                              <!-- <div class="pl-3"><a href="#"><img src="{% static 'img/change_password.png' %}" class ="rounded mx-auto d-block" style="width:50px;height:50px;"/></a></div> -->
+                          </div>
+                          <div class="box-body">
+                              <table class="table table-bordered">
+                                  <tr>
+                                      <th>Username</th>
+                                      <td>{{user}}</td>
+                                  </tr>
+                                  <!-- <tr>
+                                      <th>First Name</th>
+                                      <td>{{user.first_name}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th>Last Name</th>
+                                      <td>{{user.last_name}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th>Emailaddress</th>
+                                      <td>{{user.email_address}}</td>
+                                  </tr> -->
+                                  <tr>
+                                      <th>Contact Number</th>
+                                      <td>{{user.profile.contact_no}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th>Designation</th>
+
+                                      <td>
+                                          <!-- {% if user.profile.designation == '1'%}
+                                          Manager
+                                        {% else %}
+                                      Waiter
+                                    {% endif %}</td> -->
+                                      {{user.profile.get_designation_display }}
+                                  </tr>
+                                  <tr>
+                                      <th>Address</th>
+                                      <td>{{user.profile.address}}</td>
+                                  </tr>
+
+
+                              </table>
+                          </div>
+                          <div class="dropdown-divider"></div>
+                          <a href="{% url 'change_password' %}"><div class="d-flex flex-row justify-content-start"> <div class="ml-2 "><span style="color:red;"><h3 class="display-5">Change Password</h3></span></div>              <div class="ml-4"><img src="{% static 'img/change_password.png' %}" class ="rounded mx-auto d-block" style="width:35px;height:35px;"/></div></div></a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+{% endblock content %}

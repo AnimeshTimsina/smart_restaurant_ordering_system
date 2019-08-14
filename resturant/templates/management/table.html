@@ -1,0 +1,55 @@
+{% extends 'management/restaurantmanagement.html' %}
+{% load staticfiles %}
+{% block content %}
+{{block.super}}
+<div class="col-md-9" style="height:40vw;overflow-y:scroll">
+  <div class="card">
+    <div>
+    <img src="{% static 'img/heading.png' %}" class ="rounded mx-auto d-block" style="width:100px;height:100px;"/>
+    </div>
+    <div class="card-body">
+
+<div class="container ">
+  <div class="row d-flex justify-content-center ">
+    {% for t in table%}
+        {% if t.table_status == '1'%}
+        <div class="col-sm-4 d-flex justify-content-center m-4 p-3 dropdown" style="background-color:red">
+        <h1 style="color:white;" class="dropdown-toggle" data-toggle="dropdown">{{t}}</h1>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'editTable' t.pk%}">Edit</a>
+          <a class="dropdown-item" href="{% url 'deleteTable' t.pk %}">Delete</a>
+        </div>
+
+      </div>
+        {% elif t.table_status == '2'%}
+        <div class="col-sm-4 d-flex justify-content-center m-4 p-3 dropdown" style="background-color:blue">
+      <h1 style="color:white;" class="dropdown-toggle" data-toggle="dropdown">{{t}}</h1>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'editTable' t.pk%}">Edit</a>
+        <a class="dropdown-item" href="{% url 'deleteTable' t.pk %}">Delete</a>
+      </div>
+
+    </div>
+        {% else %}
+        <div class="col-sm-4 d-flex justify-content-center m-4 p-3 dropdown" style="background-color:green">
+      <h1 style="color:white;" class="dropdown-toggle" data-toggle="dropdown">{{t}}</h1>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'editTable' t.pk%}">Edit</a>
+        <a class="dropdown-item" href="{% url 'deleteTable' t.pk %}">Delete</a>
+      </div>
+
+    </div>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+<div><a href="{% url 'addTable'%}">
+<img src="{% static 'img/add_button.png' %}" class ="rounded mx-auto d-block" style="width:100px;height:100px;"/></a>
+</div>
+</div>
+</div>
+
+{% endblock content %}

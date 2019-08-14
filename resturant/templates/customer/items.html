@@ -1,0 +1,17 @@
+{% extends 'customer/menu.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+    <div class="container "><br>
+        {% for food in f %}
+            <div class="row" style="margin-bottom: 5%">
+                <div class="col" style="text-align: initial; margin-top: 3%" ><a href="{% url 'food_details' table_name food.pk %}"><img src="{{ food.imageUrl }}" width="80%"></div>
+                <div class="col" style="text-align:left; font-size: 4.5vw">{{food.name}}<br><h6 style="font-size:3vw">{{food.type}}</h6></div>
+                <div class="col" style="text-align: right; font-size: 4vw">Rs. {{food.pricePerQuantity}}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock  %}

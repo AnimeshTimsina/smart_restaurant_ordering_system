@@ -1,0 +1,51 @@
+{% extends 'customer/base.html'%}
+{% load staticfiles%}
+
+           {% block links%}
+           <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+           <style>
+           /* @media only screen and (max-device-width: 480px) {
+           select {
+             background: -webkit-linear-gradient(white, #666);
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   color: white;
+   text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+   -webkit-appearance: none;
+           } */
+           </style>
+           {% endblock links%}
+
+  {% block content%}
+
+      <div class="container" style="margin-left: 4%">
+        <form method="POST">
+        <h3>Rate our food </h3>
+        {% for food in foods%}
+        {% csrf_token%}
+        <div>
+            <h4><a href="#">{{food}}</a></h4>
+            <select name="stars_of_{{food.id}}">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              </select>
+
+        </div>
+        <br>
+        {% endfor %}
+        <button class="btn btn-info" type="submit">Rate</a>
+
+</form>
+   </div>
+
+   {% endblock content%}
+   {% block back_button%}
+   <br>
+   <div class="container" style="margin-left: initial">
+      <a href="#"><img src="{% static 'img/confirmedorders-icons8-back-64@2x.png' %}" width="10%"></a>
+   </div>
+{% endblock back_button%}

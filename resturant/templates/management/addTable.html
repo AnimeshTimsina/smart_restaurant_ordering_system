@@ -1,17 +1,19 @@
-<html>
-<body>
-<title></title>
-<head></head>
-<div class="container">
-<h1> Add table </h1>
-<form method="POST">
-{% csrf_token %}
-<div class="form-group">
-  {{form.as_p}}
-  </div>
-  <button type="Submit" class="btn btn-primary"> Add </button>
-</form>
-</div>
-</body>
-</html>
 
+{% extends 'management/restaurantmanagement.html' %}
+{% load staticfiles %}
+{% block content %}
+{{block.super}}
+<div class="col-md-9">
+  <div class="card" style="overflow-y:scroll;">
+    <div class="card-body">
+      <h3 class="card-title"> Add Table </h3>
+      <form method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button class="btn btn-info" type="Submit">Add</button>
+      <a href="{% url 'viewTable' %}" class="btn btn-info" align="center">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

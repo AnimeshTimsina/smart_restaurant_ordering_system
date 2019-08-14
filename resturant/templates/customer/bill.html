@@ -1,0 +1,72 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/Menu.css' %}">
+    <title>Apple Resturant</title>
+    <style> 
+            @font-face {
+               font-family: myFont;
+               src: url('comic.ttf');
+            }
+            
+            * {
+               font-family: myFont;
+            }
+            
+            </style>
+    
+</head>
+<body>
+ 
+        <center><h4 style="font-size: 4.5vw">Bill:</h4></center>  <br><br>
+       
+        <div class="container">
+           Date:  {{date}}      
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th><h5 style="font-size: 5vw">FOOD</h5></th>
+                  <th><h5 style="font-size: 5vw">QUANTITY</h5></th>
+                  <th><h5 style="font-size: 5vw">COST</h5></th>
+                  <th><h5 style="font-size: 5vw"></h5></th>
+                </tr>
+              </thead>
+              
+              <tbody>
+              
+                {% for i in final %}
+                <tr>
+                
+                  <td style="font-size: 4.5vw">{{i.0}}</td>
+                  <td style="font-size: 4.5vw">{{i.1}}</td>
+                  <td style="font-size: 4.5vw">{{i.2}}</td>
+                 
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td style="font-size: 4.5vw"><b>Total</b></td>
+                    <td style="font-size: 4.5vw"><b>Rs.{{totalCost}}</b></td>
+        
+                </tr>
+              </tbody>
+            </table>
+<a class="btn btn-info" href="{% url 'rate' table_name %}">Finish </a>
+            
+          </div>
+
+    
+
+         
+           
+</body>
+</html>

@@ -1,5 +1,6 @@
-{% load staticfiles %}
 
+{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,21 +13,23 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/Menu.css' %}">
     <title>Apple Resturant</title>
+    {% block links%}
+
+    {% endblock links%}
 </head>
 <body style="background-color: rgba(235, 223, 223, 1.0);">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col" ><img src="{% static 'img/orderissued-256063a0-4e1f-41cc-b21f-681d4050e65a200x200@2x.png' %}" alt="Apple Resturant" width="62%"></div>
-            <div class="col" style="text-align:end; margin-top:6%"><a href="{% url 'table_allocate' %}"><img src="{% static 'img/orderissued-home-icon@2x.png' %}" alt="logo" width="28%"></a></div>
-        </div>
+   
+{% block content %}
+
+{% endblock content %}
+
+
+  {% block back_button%}
+  {% endblock back_button%}
+
+
+
     </div>
-
-    <div class="container">
-
-        {% block content %}
-        {% endblock %}
-  
-    </div>  
 
 </body>
 </html>

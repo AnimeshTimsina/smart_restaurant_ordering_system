@@ -1,0 +1,19 @@
+{% extends 'management/restaurantmanagement.html' %}
+{% load staticfiles %}
+{% block content %}
+{{ block.super }}
+<div class="col-md-9">
+  <div class="card" >
+    <div class="card-body">
+      <h3 class="card-title"> Edit Category</h3>
+      <form method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button class="btn btn-info" type="Submit">Edit</button>
+      <a href="{% url 'viewMenu' %}" class="btn btn-info" align="center">Cancel</a>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

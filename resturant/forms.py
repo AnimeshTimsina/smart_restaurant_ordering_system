@@ -1,11 +1,11 @@
-from .models import Table
+from .models import Table,Food,Type,Profile,Category
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 
 class addTableForm(ModelForm):
     class Meta:
         model = Table
-        fields = ['name']
+        fields = ['name','table_status']
 
     def save(self,commit=True):
         obj = super(addTableForm,self).save(commit=False)
@@ -17,10 +17,37 @@ class addTableForm(ModelForm):
             obj.save()
         return obj
 
+class addCategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = "__all__"
 
-        
-        
+class addFoodForm(ModelForm):
+    class Meta:
+        model = Food
+        fields = ['name','pricePerQuantity','type','description','imageUrl']
 
+class addFoodTypeForm(ModelForm):
+    class Meta:
+        model = Type
+        fields = "__all__"
 
-    
-    
+class editTableForm(ModelForm):
+    class Meta:
+        model = Table
+        fields = ['name','table_status']
+
+class editProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+class editFoodForm(ModelForm):
+    class Meta:
+        model = Food
+        fields = ['name','pricePerQuantity','type','description','imageUrl']
+
+class editCategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'

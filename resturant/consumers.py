@@ -27,6 +27,7 @@ class checkConsumer(AsyncWebsocketConsumer):
         totalCost = text_data_json['totalCost']
         order_status = text_data_json['order_status']
         id = text_data_json['id']
+
         
         await self.channel.layer.group_send(
             self.group_name,
@@ -39,7 +40,8 @@ class checkConsumer(AsyncWebsocketConsumer):
             'costList':costList,
             'totalCost':totalCost,
             'order_status':order_status,
-            'id':id
+            'id':id,
+            
             }
         )
 
@@ -61,6 +63,8 @@ class checkConsumer(AsyncWebsocketConsumer):
                 'costList':costList,
                 'totalCost':totalCost,
                 'order_status':order_status,
-                'id':id
+                'id':id,
+             
+
 
                 }))
