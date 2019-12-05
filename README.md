@@ -37,6 +37,7 @@
   
   `psql -U [USERNAME] [DBNAME] < srosdb.sql`
     
+- Open smartResturant/settings.py and update DATABASE settings according to your postgres database configuration
 
 - `python manage.py runserver`
 
