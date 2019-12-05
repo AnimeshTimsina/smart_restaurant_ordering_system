@@ -1,7 +1,7 @@
 # Smart Restaurant Ordering System
 
 
-#### Resources:
+## Resources:
 
 - Django   
 - PostgreSQL
@@ -12,7 +12,7 @@
 - Django-paypal 
 
 
-### Steps:
+## Steps:
 - Inside Project directory:
 
     `pip install -r requirements.txt`
@@ -23,12 +23,15 @@
     
     If it fails to start
     
-    Linux: `systemctl restart redis-server`
-            `systemctl enable redis-server`
+   ### Linux: 
+   `systemctl restart redis-server`
+   `systemctl enable redis-server`
          
-    MacOS: `redis-server /etc/redis.conf`
+   ### MacOS: 
+   `redis-server /etc/redis.conf`
     
-    Windows `redis-server --service-start`
+   ### Windows: 
+   `redis-server --service-start`
     
 - Create a postgres database named srosdb and import the provided test sql file to this database
   
