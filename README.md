@@ -18,11 +18,17 @@
     `pip install -r requirements.txt`
 
 - Run redis server on default port:
+
     `redis-server`
+    
     If it fails to start
+    
     Linux: `systemctl restart redis-server`
-         : `systemctl enable redis-server`
+    
+            `systemctl enable redis-server`
+         
     MacOS: `redis-server /etc/redis.conf`
+    
     Windows `redis-server --service-start`
     
 - Create a postgres database named srosdb and import the provided test sql file to this database
@@ -30,22 +36,7 @@
   `psql -U [USERNAME] [DBNAME] < srosdb.sql`
     
 
-- Inside metamask, create a new server with the same RPC server address as in Ganache
-- Import Accounts on Metamask from Ganache using the private keys of the addresses
-- Reload the browser
-
-### For QR CODE SCANNER:
-
-- Go to directory 'User Authentication Cross Platform Mobile Application'
-- `npm install expo-cli --global`
-- `npm install`
-- `expo start -c`
-- Either run on an emulator or install expo app on your phone and scan the QR code to open the app on your phone
-- Add ganache provided id keys on election.json file (Only the accounts with these keys are authorized to vote)
-- Open any online QR code generator, embed one of these keys and create a QR code. Also for testing purpose, create another QR code with     any text except the key
-- Open the app and scan these QR codes one by one
-- Authentication succeeds or fails depending upon the validity of key in the QR code
-- You can now vote as soon as the user is authenticated
+- `python manage.py runserver`
 
 
 ### Screenshots
