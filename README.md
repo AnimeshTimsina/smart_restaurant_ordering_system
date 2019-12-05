@@ -24,7 +24,6 @@
     If it fails to start
     
     Linux: `systemctl restart redis-server`
-    
             `systemctl enable redis-server`
          
     MacOS: `redis-server /etc/redis.conf`
